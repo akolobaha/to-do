@@ -24,7 +24,8 @@ export default {
 	},
 	methods: {
 		createTask () {
-			console.log(this.$store.commit('addTask'))
+
+			return this.$store.commit('addTask', this.task)
 		}
 	}
 }

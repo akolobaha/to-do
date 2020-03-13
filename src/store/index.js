@@ -12,9 +12,12 @@ export default new Vuex.Store({
     ]
   },
   mutations: {
-    addTask (state, tasks) {
-      state.tasks = tasks;
-      console.log(state)
+    addTask (state, payload) {
+      state.tasks.push({
+        name: payload.name,
+        description: payload.text
+      })
+      console.log(payload)
     }
   },
   actions: {
