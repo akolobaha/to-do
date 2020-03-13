@@ -1,23 +1,35 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import createPersistedState from "vuex-persistedstate";
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
     tasks: [
-      {name: 'name', description: 'text'},
-      {name: 'name2', description: 'description2'},
-      {name: 'name3', description: 'description3'},
-    ]
+    ],
+    task_id: 0
   },
   mutations: {
     addTask (state, payload) {
+      console.log(state.task_id, state.tasks)
       state.tasks.push({
         name: payload.name,
-        description: payload.text
+        description: payload.text,
+        id: state.task_id++,
+        created: new Date()
       })
-      console.log(payload)
+    },
+    incrementId () {
+      return this.task_id++
+    },
+
+    removeTask(state, payload) {
+      state.tasks.forEach((item, index, tasks) => {
+        if (item.id == payload){
+          tasks.splice(index, 1)
+        }
+      })
     }
   },
   actions: {
@@ -28,6 +40,7 @@ export default new Vuex.Store({
       return state.tasks
     }
   },
+  plugins: [createPersistedState()],
   modules: {
   }
 })

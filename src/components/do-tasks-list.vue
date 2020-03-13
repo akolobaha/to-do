@@ -21,15 +21,6 @@ export default {
 			return this.$store.getters.allTasks
 		}
 	},
-	// data () {
-	// 	return {
-	// 		tasks: [
-	// 			{ name: 'Задача1', description: 'Описание задачи 1', id: "1" },
-	// 			{ name: 'Задача2', description: 'Описание задачи 2', id: "2" },
-	// 			{ name: 'Задача3', description: 'Описание задачи 3', id: "3" },
-	// 		]
-	// 	}
-	// }
 }
 </script>
 

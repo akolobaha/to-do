@@ -18,13 +18,12 @@ export default {
 			task: {
 				name: '',
 				text: '',
-				status: 'В работе'
+				status: 'В работе',
 			}
 		}
 	},
 	methods: {
 		createTask () {
-
 			return this.$store.commit('addTask', this.task)
 		}
 	}
