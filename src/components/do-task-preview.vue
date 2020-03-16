@@ -8,6 +8,12 @@
 		</div>
 		<h1>{{ task.name }}</h1>
 		<p>{{  task.description  }}</p>
+		<p>{{ whenCriated() }}</p>
+		<p>{{ task.status }}</p>
+		<button 
+			class="finish_the_task"
+			@click="finishThisTask"
+		>Завершить задачу</button>
 	</div>
 </template>
 
@@ -20,6 +26,14 @@ export default {
 	methods: {
 		removeThisTask () {
 			return this.$store.commit('removeTask', this.task.id)
+		},
+		finishThisTask () {
+			return this.$store.commit('changeTasksStatus', this.task.id)
+		},
+		whenCriated () {
+			let created = new Date(this.task.created)
+			let formattedDate = `Создана: ${created.getDate()}.${created.getMonth()}.${created.getFullYear()} ${created.getHours()}:${created.getMinutes()}`
+			return formattedDate
 		}
 	}
 }
@@ -34,6 +48,19 @@ export default {
 		text-align: right;
 		.remove-task{
 			cursor: pointer;
+		}
+	}
+	.finish_the_task {
+		background: limegreen;
+		border: none;
+		color: #fff;
+		cursor: pointer;
+		padding: 10px 15px;
+		&:hover {
+			opacity: 0.8;
+		}
+		&:focus, &:active {
+			filter: brightness(1.1)
 		}
 	}
 </style>

@@ -17,7 +17,8 @@ export default new Vuex.Store({
         name: payload.name,
         description: payload.text,
         id: state.task_id++,
-        created: new Date()
+        created: new Date(),
+        status: 'created'
       })
     },
     incrementId () {
@@ -28,6 +29,14 @@ export default new Vuex.Store({
       state.tasks.forEach((item, index, tasks) => {
         if (item.id == payload){
           tasks.splice(index, 1)
+        }
+      })
+    },
+
+    changeTasksStatus (state, payload) {
+      state.tasks.forEach((item, index, tasks) => {
+        if (item.id == payload){
+          tasks[index].status = 'finished'
         }
       })
     }
