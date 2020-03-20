@@ -5,8 +5,6 @@
 </template>
 
 <script>
-import doTaskFinished from './do-task-finished.vue'
-
 export default {
 	name: 'do-task-finished',
 }

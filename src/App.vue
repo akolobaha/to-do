@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <do-main-wrapper></do-main-wrapper>
+    <v-app>
+      <do-main-wrapper></do-main-wrapper>
+    </v-app>
   </div>
 </template>
 
