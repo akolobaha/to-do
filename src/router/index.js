@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import TasksList from '../components/do-tasks-list'
-import CreateTask from '../components/do-create-task'
+import TasksList from '../components/tasks/do-tasks-list'
+import CreateTask from '../components/tasks/do-create-task'
+import FinishedTask from '../components/tasks/do-task-finished'
 
 Vue.use(VueRouter)
 
@@ -19,6 +20,11 @@ const routes = [
     // component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
     name: 'Add',
     component: CreateTask
+  },
+  {
+    path: '/finished',
+    name: 'Finished',
+    component: FinishedTask
   }
 ]
 

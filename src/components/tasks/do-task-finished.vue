@@ -1,0 +1,32 @@
+<template>
+	<div class="do-task-finished">
+		<h1>Завершенные</h1>
+		<do-task-preview 
+			v-for="task of finishedTasks"
+			:key="task.id"
+			:task="task"
+		></do-task-preview>
+	
+	</div>
+</template>
+
+<script>
+import doTaskPreview from './do-task-preview'
+
+export default {
+	name: 'do-task-finished',
+	components: {
+		doTaskPreview
+	},
+	computed: {
+		finishedTasks() {
+			return this.$store.getters.finishedTasks
+		}
+	}
+}
+
+</script>
+
+<style>
+
+</style>

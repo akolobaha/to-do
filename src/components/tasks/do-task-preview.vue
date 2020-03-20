@@ -13,13 +13,21 @@
 		<button 
 			class="finish_the_task"
 			@click="finishThisTask"
+			v-if="this.task.status != 'finished'"
 		>Завершить задачу</button>
+		<do-task-start
+			v-if="this.task.status != 'finished'"
+		></do-task-start>
 	</div>
 </template>
 
 <script>
+import doTaskStart from './do-task-start.vue'
 export default {
 	name: 'do-task-preview',
+	components: {
+		doTaskStart
+	},
 	props: {
 		task: {}
 	},

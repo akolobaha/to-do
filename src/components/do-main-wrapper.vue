@@ -1,6 +1,7 @@
 <template>
 	<div class="do-main-wrapper">
-		<router-link class="link-item" to='/'>Список задач</router-link> 
+		<router-link class="link-item" to='/'>Все</router-link> 
+		<router-link class="link-item" to="/finished">Завершенные</router-link>
 		<router-link class="link-item" to='/add'>Добавить задачу</router-link>
 		<router-view></router-view>
 	</div>

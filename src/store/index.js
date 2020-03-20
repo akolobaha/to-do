@@ -6,8 +6,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    tasks: [
-    ],
+    tasks: {},
     task_id: 0
   },
   mutations: {
@@ -47,6 +46,12 @@ export default new Vuex.Store({
   getters: {
     allTasks(state) {
       return state.tasks
+    },
+    finishedTasks(state) {
+      let finished = state.tasks.filter((task) => {
+        return task.status == 'finished'
+      })
+      return finished
     }
   },
   plugins: [createPersistedState()],
