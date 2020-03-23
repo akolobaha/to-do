@@ -1,6 +1,5 @@
 <template>
 	<div class="do-task-finished">
-		<h1>Завершенные задачи</h1>
 	</div>
 </template>
 

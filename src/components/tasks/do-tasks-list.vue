@@ -1,11 +1,13 @@
 <template>
 	<div class="do-tasks-list">
-		<h1>Tasks</h1>
-		<do-task-preview 
-			v-for="task of allTasks"
-			:key="task.id"
-			:task="task"
-		></do-task-preview>
+		<v-row>
+				<do-task-preview 
+					v-for="task of allTasks"
+					:key="task.id"
+					:task="task"
+				></do-task-preview>
+		</v-row>
+		
 	</div>
 </template>
 

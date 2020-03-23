@@ -1,35 +1,49 @@
 <template>
-	<div class="do-task-preview">
-		<div class="top">
-			<span 
-				class="remove-task"
-				@click="removeThisTask"
-			>x</span>
-		</div>
-		<h1>{{ task.name }}</h1>
-		<p>{{  task.description  }}</p>
-		<p>{{ whenCriated() }}</p>
-		<p>{{ task.status }}</p>
-		<button 
-			class="finish_the_task"
-			@click="finishThisTask"
-			v-if="this.task.status != 'finished'"
-		>Завершить задачу</button>
-		<do-task-start
-			v-if="this.task.status != 'finished'"
-		></do-task-start>
-	</div>
+		<v-col md="4" class="do-task-preview">
+				<v-card class="px-4 py-2">
+					<div class="top">
+					
+					<v-icon
+						@click="removeThisTask"
+					>
+						mdi-close-circle-outline
+					</v-icon>
+				</div>
+				<h3 class="text-center">
+					{{ task.name }} 
+					<v-chip :color="chipColorSetter()" dark>{{thisTaskStatus ()}}</v-chip> 
+				</h3>
+				<p>{{  task.description  }}</p>
+				<p>{{ whenCriated() }}</p>
+				<p>{{ task.status }}</p>
+				
+				<v-btn
+					@click="finishThisTask"
+					v-if="this.task.status != 'finished'"
+				>
+					<v-icon>mdi-flag-checkered</v-icon>
+					Завершить
+				</v-btn>
+				
+				<v-btn><v-icon> mdi-play </v-icon>Начать</v-btn>
+		
+		</v-card>
+		</v-col>
+		
 </template>
 
 <script>
-import doTaskStart from './do-task-start.vue'
 export default {
 	name: 'do-task-preview',
 	components: {
-		doTaskStart
 	},
 	props: {
 		task: {}
+	},
+	data () {
+		return {
+			chipColor: '',
+		}
 	},
 	methods: {
 		removeThisTask () {
@@ -42,33 +56,26 @@ export default {
 			let created = new Date(this.task.created)
 			let formattedDate = `Создана: ${created.getDate()}.${created.getMonth()}.${created.getFullYear()} ${created.getHours()}:${created.getMinutes()}`
 			return formattedDate
+		},
+		thisTaskStatus () {
+			return this.task.status
+		},
+		chipColorSetter () {
+			if (this.task.status == 'В ожидании' || this.task.status == 'created') {
+				return 'blue'
+			}
+			if (this.task.status == 'finished') {
+				return 'green'
+			}
 		}
 	}
 }
 </script>
 
 <style lang="scss">
-	.do-task-preview {
-		border: 1px solid grey;
-	}
+	
 	.top {
-		padding: 5px 15px 0 0;
 		text-align: right;
-		.remove-task{
-			cursor: pointer;
-		}
 	}
-	.finish_the_task {
-		background: limegreen;
-		border: none;
-		color: #fff;
-		cursor: pointer;
-		padding: 10px 15px;
-		&:hover {
-			opacity: 0.8;
-		}
-		&:focus, &:active {
-			filter: brightness(1.1)
-		}
-	}
+
 </style>

@@ -1,11 +1,17 @@
 <template>
 	<div class="do-create-task">
 		<div>
+			<hr>
 			<h1>Добавить задачу</h1>
-		<input type="text" placeholder="Название задачи" v-model="task.name"><br>
-		<textarea type="text" placeholder="Описание задачи" v-model="task.text"></textarea>
-		<hr>
-		<button @click="createTask">Создать</button>
+			<!-- <input type="text" placeholder="Название задачи" ><br> -->
+			<v-text-field placeholder="Название задачи" v-model="task.name"></v-text-field>
+			<v-textarea placeholder="Описание задачи" v-model="task.text"></v-textarea>
+			<v-btn 
+				@click="createTask" 
+				color="green" 
+				dark
+				v-if="isBtnActive"
+			>Создать</v-btn>
 		</div>
 	</div>
 </template>
@@ -18,15 +24,28 @@ export default {
 			task: {
 				name: '',
 				text: '',
-				status: 'В работе',
-			}
+			},
+			isBtnActive: false
 		}
 	},
 	methods: {
 		createTask () {
 			return this.$store.commit('addTask', this.task)
+		},
+		isValid () {
+			return console.log('isVAlid')
 		}
-	}
+	},
+	computed: {
+		formName () {
+			return this.task.name
+		},
+	},
+	watch: {
+		formName: function() {
+			console.log(this.task.name)
+		}
+	}	
 }
 </script>
 

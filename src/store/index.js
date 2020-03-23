@@ -17,7 +17,7 @@ export default new Vuex.Store({
         description: payload.text,
         id: state.task_id++,
         created: new Date(),
-        status: 'created'
+        status: 'В ожидании'
       })
     },
     incrementId () {

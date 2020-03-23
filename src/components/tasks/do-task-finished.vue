@@ -1,13 +1,13 @@
 <template>
-	<div class="do-task-finished">
-		<h1>Завершенные</h1>
-		<do-task-preview 
-			v-for="task of finishedTasks"
-			:key="task.id"
-			:task="task"
-		></do-task-preview>
-	
-	</div>
+		<div class="do-task-finished">
+			<v-row>
+				<do-task-preview 
+					v-for="task of finishedTasks"
+					:key="task.id"
+					:task="task"
+				></do-task-preview>
+			</v-row>
+		</div>
 </template>
 
 <script>
